@@ -43,7 +43,8 @@
                 @Html.DisplayFor(x => i.Name)
             </td>
             <td>
-                @Html.DisplayFor(x => i.Price)
+                @String.Format("{0:c}",i.Price)
+                @*@Html.DisplayFor(x => i.Price)*@
             </td>
             <td>
                 @Html.DisplayFor(x => i.Available)
@@ -52,7 +53,10 @@
                 @Html.DisplayFor(x => i.ProductTypes.Name)
             </td>
             <td>
-                @Html.DisplayFor(x => i.SpecialTags.Name)
+                @if (!i.SpecialTags.Name.Equals("None"))
+                {
+                    @Html.DisplayFor(x => i.SpecialTags.Name)
+                }
             </td>
             <td>
                 <partial name="_TableButtons" model="i.Id" />
