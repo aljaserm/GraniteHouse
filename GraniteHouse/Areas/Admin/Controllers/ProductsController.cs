@@ -7,12 +7,14 @@ using GraniteHouse.Data;
 using GraniteHouse.Models;
 using GraniteHouse.Utility;
 using GraniteHouse.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraniteHouse.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminUser)]
     [Area("Admin")]
     public class ProductsController : Controller
     {
