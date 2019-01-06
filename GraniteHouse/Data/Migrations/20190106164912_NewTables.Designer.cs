@@ -4,60 +4,22 @@ using GraniteHouse.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GraniteHouse.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190106164912_NewTables")]
+    partial class NewTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("GraniteHouse.Models.Appointments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AppointmentDate");
-
-                    b.Property<bool>("Confirmed");
-
-                    b.Property<string>("CustomerEmail");
-
-                    b.Property<string>("CustomerName");
-
-                    b.Property<string>("CustomerPhone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("appointments");
-                });
-
-            modelBuilder.Entity("GraniteHouse.Models.AppointmentsProducts", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("appointmentId");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("appointmentId");
-
-                    b.ToTable("appointmentsProducts");
-                });
 
             modelBuilder.Entity("GraniteHouse.Models.Products", b =>
                 {
@@ -279,19 +241,6 @@ namespace GraniteHouse.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("GraniteHouse.Models.AppointmentsProducts", b =>
-                {
-                    b.HasOne("GraniteHouse.Models.Products", "products")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("GraniteHouse.Models.Appointments", "appointments")
-                        .WithMany()
-                        .HasForeignKey("appointmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("GraniteHouse.Models.Products", b =>
