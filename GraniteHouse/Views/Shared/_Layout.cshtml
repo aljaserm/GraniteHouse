@@ -40,6 +40,10 @@
                     <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a></li>
                     <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="UsersMgmt" asp-action="Index">Users</a></li>
                 }
+                @if (User.IsInRole(SD.AdminUser) || User.IsInRole(SD.SuperAdminUser))
+                {
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Appointment" asp-action="Index">Appointments</a></li>
+                }
 
                 @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShopingCart") != null)
                 {
