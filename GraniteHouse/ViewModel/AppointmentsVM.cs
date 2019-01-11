@@ -9,5 +9,6 @@ namespace GraniteHouse.ViewModel
     public class AppointmentsVM
     {
         public List<Appointments> appointments {get;set;}
+        public PagingInfo PagingInfo { get; set; }
     }
 }
